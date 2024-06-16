@@ -28,7 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = ["brewery-review-system-7pu9.onrender.com",
                  "35.160.120.126",
 "44.233.151.27",
-"34.211.200.85"]
+"34.211.200.85",
+"brewery-review-system-1-05qz.onrender.com"]
 
 
 # Application definition
