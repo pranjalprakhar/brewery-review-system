@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-4r-^6m1u9sjl$ppgjind$7fro-r&2&sl!5x_f_s@e4d9d13!%k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["brewery-review-system-7pu9.onrender.com"]
+ALLOWED_HOSTS = ["brewery-review-system-7pu9.onrender.com",
+                 "35.160.120.126",
+"44.233.151.27",
+"34.211.200.85"]
 
 
 # Application definition
