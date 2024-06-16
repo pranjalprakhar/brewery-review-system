@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/keen-slider@latest/keen-slider.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/keen-slider@latest/keen-slider.js"></script>
+</head>
+
+<body>
+    <header class="absolute inset-x-0 top-0 z-50">
+        <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> 
+          <div class="flex lg:flex-1">
+              <span class="sr-only">Your Company</span>
+              <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
+          </div>
+          <div class="hidden sm:ml-6 sm:block">
+            <div class="flex space-x-4">
+                {% comment %} <a href="" class=" bg-gray-900 px-5 py-3 text-m font-bold text-white " aria-current="page">Logout </a> {% endcomment %}
+                <a href="{% url 'home' %}" class="text-medium font-semibold leading-6 text-white">Logout</a>
+            </a>
+        </nav>
+    </header>
+    <main class="min-h-[100dvh] py-[100px] bg-black flex flex-col justify-center">
+        <!-- component -->
+        <!-- This is an example component -->
+        <div class='flex items-center justify-center h-screen bg-[#0d1829] '>
+        <div class=' mx-auto bg-white rounded-3xl shadow-xl max-w-md p-6'>
+            <div class="grid rounded-3xl max-w-[500px] shadow-sm bg-slate-100  flex-col max-h-[2000px]">
+            <img
+                src="https://cdn.shopify.com/s/files/1/0061/4639/2135/files/2_12_480x480.jpg?v=1648485586"
+                width="400"
+                height="100"
+                class="rounded-t-3xl justify-center grid h-80 object-cover"
+                alt="movie.title"
+            /> 
+
+            <div class="group p-14 grid z-10">
+            <a  class="text-black-700 font-serif  sm:text-3xl mb-2 line-clamp-1 hover:text-red-500">
+                {{brewery.name}}
+            </a>
+           <br>
+           <button class="middle none center mr-2 rounded-lg bg-green-500 py-4 px-3 font-sans text-medium font-bold  text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" data-ripple-light="true">
+               <a href="{% url 'display_detail' brewery.id %}"> Click Me! </a>
+           </button>
+        </div>
+    </div>
+    </div>
+</div>
+</main>
+</body>
+</html>

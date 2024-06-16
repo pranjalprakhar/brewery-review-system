@@ -1,0 +1,74 @@
+{% load static tailwind_tags %}
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Search Breweries</title>
+        <script src="https://cdn.tailwindcss.com"></script> 
+    </head>
+    
+    <body>
+        <div class="bg-black">
+            <header class="absolute inset-x-0 top-0 z-50">
+            <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> 
+                <div class="flex lg:flex-1">
+                <a href="#" class="-m-1.5 p-1.5">
+                    <span class="sr-only">Your Company</span>
+                    <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
+                </a>
+                </div>
+                <div class="flex lg:hidden">
+                <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+                </div>
+                <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                    <a href="{% url 'home' %}" class="text-medium font-semibold leading-6 text-white">Logout</a>
+                </div>
+            </nav>
+        </header>
+    </div>
+    <section class="py-4 md:py-8 dark:bg-gray-800">
+        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+            <a class="flex items-center mb-4 text-4xl font-semibold text-gray-900 dark:text-white"  style="font-family: serif;">
+            Brewery Review System 
+            </a>
+            
+            <!-- Container -->
+            <div class="relative flex flex-col items-center mx-auto lg:flex-row-reverse lg:max-w-5xl lg:mt-12 xl:max-w-6xl">
+
+                <!-- Image Column -->
+                <div class="w-full h-64 lg:w-1/2 lg:h-auto">
+                    <img class="h-full w-full object-cover" src="https://fastly.picsum.photos/id/395/2000/2000.jpg?hmac=w_V4d6vcFDzLv9zs-gYyP0VeRSvLVUYJEUithzjHNjs" alt="">
+                </div>
+                <!-- Close Image Column -->
+
+                <!-- Text Column -->
+                <div
+                    class="max-w-lg bg-white md:max-w-2xl md:z-10 md:shadow-lg md:absolute md:top-0 md:mt-48 lg:w-3/5 lg:left-0 lg:mt-20 lg:ml-20 xl:mt-24 xl:ml-12">
+                    <!-- Text Wrapper -->
+                    <div class="flex flex-col p-12 md:px-16">
+                        <h2 class="text-2xl font-medium uppercase text-green-800 lg:text-4xl">Hey, we're Big Lemon,
+                            nice to meet you </h2>
+                        <p class="mt-4">
+                            We’re a bunch of passionate and value driven individuals that truly care about the impact of the products we produce.
+                        </p>
+                        <!-- Button Container -->
+                        <div class="mt-8">
+                            <a class="inline-block w-full text-center text-lg font-medium text-gray-100 bg-green-600 border-solid border-2 border-gray-600 py-4 px-10 hover:bg-green-800 hover:shadow-md md:w-48">Read
+                                More</a>
+                        </div>
+                    </div>
+                    <!-- Close Text Wrapper -->
+                </div>
+                <!-- Close Text Column -->
+            </div>
+        </div>
+    </section>
+    </body>
+</html>

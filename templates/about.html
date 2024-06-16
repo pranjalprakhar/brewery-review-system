@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/keen-slider@latest/keen-slider.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/keen-slider@latest/keen-slider.js"></script>
+</head>
+<body>	
+    <header class="absolute inset-x-0 top-0 z-50">
+        <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> 
+          <div class="flex lg:flex-1">
+              <span class="sr-only">Your Company</span>
+              <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
+          </div>
+          <div class="hidden sm:ml-6 sm:block">
+            <div class="flex space-x-4">
+                <a href="{% url 'home' %}" class="text-medium font-semibold leading-6 text-white">Logout</a>
+            </a>
+        </nav>
+    </header>
+    <div class="bg-black w-full h-screen">
+        <br>
+        <div class="text-center">
+            <h1 class="text-4xl font-serif tracking-tight text-blue-300 sm:text-6xl">Hospitality Now</h1>
+        </div>
+        <div class="sm:flex items-center max-w-screen-xl ">
+            <div class="sm:w-1/2 p-10">
+                <div class="image object-center text-center">
+                    <img src="https://i.imgur.com/WbQnbas.png">
+                </div>
+            </div>
+            <div class="sm:w-1/2 p-5 mt-1/3">
+                <div class="text">
+                    <h2 class="my-4 font-bold text-3xl font-serif sm:text-4xl"> <span class="text-indigo-600">About Us.....</span>
+                    </h2>
+                    <p class="text-gray-200">
+                        Crooked Hammock Brewing is a Delaware-based hospitality group 
+                        designed to feel like a breezy, carefree escape from everyday life. 
+                        The company's website delivers this aesthetic with a lighthearted design and a backstory written in a familiar, accessible voice.
+                    </p>
+                    <br>
+                    <p class="text-indigo-300">
+                        Everyone looks forward to an escape away from the hustle and bustle of everyday life,
+                        to take a break  and catch their breath.
+                        <br><br>
+                        <span class="text-indigo-600">Crooked Hammock Brewery<span><span class="text-indigo-300"> offers a great environment for those who love a trip to the beach,
+                        with friends and family, where special moments unfold in a familiar backyard with easy drinking craft brews and brew-pub 
+                        inspired food, sharing old stories, new conversations, laughter, and cherished memories.
+                        </span>
+                    </p>
+                </div>
+            </div>
+    </div>
+</body>
+</html>

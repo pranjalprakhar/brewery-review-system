@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+
+<div class="w-full h-screen bg-[url('https://images.unsplash.com/9/fields.jpg?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxMXx8bGVudGFscyUyMGZhcm18ZW58MHwwfHx8MTcxMjc0NjE1OXww&ixlib=rb-4.0.3&q=80&w=1080')] bg-center bg-cover bg-no-repeat">
+    <!-- Nav -->
+    <div class="md:w-[90%] xs:w-[90%] mx-auto rounded-xl border-b-4 border-black/20 px-4 flex flex-wrap items-center py-10 shadow-lg">
+        <form action="{% url 'list_brewery' %}" method="get">
+            <div class="flex-1 flex justify-between items-center">
+                    <div class="absolute left-1/2 transform -translate-x-1/2 mt-1">
+                    <input type="text" name="query" class="w-[400px] border h-11 shadow p-4 rounded-full dark:text-gray-800 dark:border-gray-700 dark:bg-dark-#85C1E9 " placeholder="Search By City, Name, Type">
+                    <button type="submit">
+                        <svg class="text-teal-400 h-5 w-5 absolute top-3.5 right-3 fill-current dark:text-teal-300"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                            x="0px" y="0px" viewBox="0 0 56.966 56.966"
+                            style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve">
+                            <path
+                                d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>    
+            </div>   
+        </form>
+        <label for="menu-toggle" class="pointer-cursor md:hidden block">
+            <svg class="fill-current text-gray-100" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+            <title>menu</title>
+            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+            </svg>
+        </label>
+        <input class="hidden" type="checkbox" id="menu-toggle" />
+
+        <div class="hidden md:flex md:items-center md:w-auto w-full z-10" id="menu">
+            <nav class>
+            </nav>
+        </div>
+    </header>
+    <!-- End of Nav -->
+    <br>
+    
+    <div class="[&>*:last-child]:hover:top-0 md:[&>*:last-child]:hover:left-[15rem] lg:[&>*:last-child]:hover:left-[18rem] md:[&>*:last-child]:hover:left-[13rem] xs:[&>*:last-child]:hover:left-[7rem] group absolute top-[30%] md:left-[30%] sm:left-[25%] xs:left-[15%]">
+        <div
+            class="[transition:all_400ms_ease] group-hover:rotate-0 lg:w-[18rem] lg:h-[22rem] md:w-[14rem] md:h-[18rem] sm:w-[12rem] sm:h-[16rem] xs:w-[10rem] xs:h-[12rem] border-[0.4rem] border-transparent shadow-xl absolute -rotate-[10deg] origin-bottom-left">
+            <img src="https://images.unsplash.com/photo-1436076863939-06870fe779c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwzfHxiZWVyfGVufDB8MHx8fDE3MTI3NDU4Njh8MA&ixlib=rb-4.0.3&q=80&w=1080" class="w-full h-full rounded-sm" alt="Frame Two">
+        </div>
+        <div
+            class="[transition:all_400ms_ease] absolute -rotate-[10deg] last:rotate-[20deg] -top-[2rem] left-[2rem] group-hover:rotate-0 lg:w-[18rem] lg:h-[22rem] md:w-[14rem] md:h-[18rem] sm:w-[12rem] sm:h-[16rem] xs:w-[10rem] xs:h-[12rem] border-[0.4rem] border-transparent shadow-xl origin-bottom-left">
+            <img src="https://images.unsplash.com/photo-1608270586620-248524c67de9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw0fHxiZWVyfGVufDB8MHx8fDE3MTI3NDU4Njh8MA&ixlib=rb-4.0.3&q=80&w=1080" class="w-full h-full rounded-sm" alt="Frame One">
+        </div>
+    </div>
+
+    <div class="absolute bg-black/20 py-6 md:top-[80%] sm:top-[80%] xs:top-[60%]">
+        <h1 class="w-full md:px-4 xs:px-2 xl:text-5xl lg:text-2xl sm:text-2xl xs:text-2xl text-white text-center font-serif  ">Farm-Fresh Brews: From Field to Glass, an Unforgettable Beer Journey.</h1>
+    </div> 
+</div>
+
+</body>
+</html>

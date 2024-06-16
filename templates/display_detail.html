@@ -1,0 +1,134 @@
+{% load review_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+    <header class="absolute inset-x-0 top-0 z-50">
+        <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> 
+          <div class="flex lg:flex-1">
+              <span class="sr-only">Your Company</span>
+              <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
+          </div>
+          <div class="hidden sm:ml-6 sm:block">
+            <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                <a href="{% url 'home' %}" class="text-medium font-semibold leading-6 text-blue">Logout</a>
+            </div>
+        </nav>
+    </header>
+    <br>
+    <br>
+    <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Left column: Google Maps iframe -->
+            <div class="bg-black p-4 rounded-lg shadow">
+                <iframe class="w-full h-64 md:h-full" src="https://maps.google.com/maps?q={{ brewery.name }} {{ brewery.address_1 }}&output=embed" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen></iframe>
+            </div>
+    
+            <!-- Right column: Brewery details and review form -->
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h2 class="text-2xl font-bold" style="color:blue; font-family:serif">{{ brewery.name }}</h2>
+                <br>
+                <p class="text-gray-700">{{ brewery.brewery_type|capfirst }}</p>
+                <p class="text-gray-700">{{ brewery.address_1 }}</p>
+                {% if brewery.address_2 %}
+                    <p class="text-gray-700">{{ brewery.address_2 }}</p>
+                {% endif %}
+                {% if brewery.address_3 %}
+                    <p class="text-gray-700">{{ brewery.address_3 }}</p>
+                {% endif %}
+                <p class="text-gray-700">{{ brewery.city }}, {{ brewery.state_province }}</p>
+                <p class="text-gray-700">{{ brewery.postal_code }}</p>
+                <p class="text-gray-700">{{ brewery.country }}</p>
+                <p class="text-gray-700">Phone: {{ brewery.phone }}</p>
+                <p class="text-gray-700">Website: <a href="{{ brewery.website_url }}" target="_blank" class="text-blue-600 hover:text-blue-800">{{ brewery.website_url }}</a></p>
+                <p class="text-gray-700">
+                    <div class="flex">
+                    <div class="flex text-gray-700 mr-3">
+                        {% if brewery.average_rating %}
+                        Average Rating: <span class="mr-3"></span>
+                        {% for _ in brewery.average_rating|star_range %}
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="h-5 w-5 text-yellow-500 fill-current">
+                            <path d="M10 1l2.5 6.5H19l-5 4.1 1.9 5.9L10 15.4 4.6 17.5l1.9-5.9-5-4.1h6.5L10 1z"/>
+                        </svg>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                </p>
+                <!-- Form to add a review -->
+                <form action="{% url 'add_review' brewery.id %}" method="POST" class="mt-4" id="reviewForm" onsubmit="return validateForm()">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <label for="id_description" class="block text-sm font-medium text-gray-700">User Id:</label>
+                            <input type="text" id="user" name="user" class="block w-full p-2 mt-1 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 focus:outline-none focus:ring-2" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="id_rating" class="block text-sm font-medium text-gray-700">Rating:</label>
+                        <input type="number" id="id_rating" name="rating" min="1" max="5" required
+                            class="block w-full p-2 mt-1 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 focus:outline-none focus:ring-2">
+                        <p id="ratingError" class="text-red-500 text-sm hidden">Rating must be between 1 and 5.</p>
+                    </div>
+                    <div class="mb-4">
+                        <label for="id_description" class="block text-sm font-medium text-gray-700">Description:</label>
+                        <textarea id="id_description" name="description" rows="3" required
+                            class="block w-full p-2 mt-1 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 focus:outline-none focus:ring-2"></textarea>
+                    </div>
+                    <button type="submit"
+                        class="inline-block px-4 py-2 text-sm font-medium leading-5 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                        Add Review
+                    </button>
+                </form>
+            </div>
+        </div>
+    
+        <!-- List of reviews (full width) -->
+        <div class="bg-black p-4 rounded-lg shadow mt-8">
+            <h3 class="text-lg font-bold text-white">Reviews</h3>
+            {% if reviews %}
+                <div class="mt-4 space-y-4">
+                    {% for review in reviews %}
+                        <div class="bg-gray-100 rounded-lg p-4 relative">
+                            <div class="flex justify-between items-center mb-2">
+                                <div class="flex items-center" style="width: 80%;">
+                                    <p class="text-gray-1000">{{ review.description }}</p>
+                                </div>
+                                <div class="absolute bottom-0 right-0 mb-4 mr-4">
+                                    <p class="text-gray-500" style="color: #5B21B6">{{ review.created_at }}</p>
+                                </div> 
+                            </div>
+                            <div class="flex">
+                                <!-- Display stars based on rating -->
+                                {% for _ in review.rating|star_range %}
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="h-5 w-5 text-yellow-500 fill-current">
+                                    <path d="M10 1l2.5 6.5H19l-5 4.1 1.9 5.9L10 15.4 4.6 17.5l1.9-5.9-5-4.1h6.5L10 1z"/>
+                                </svg>
+                            {% endfor %}
+                            </div>  
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="mt-2">No reviews yet.</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <script>
+        function validateForm() {
+            var rating = document.getElementById("id_rating").value;
+            if (rating < 1 || rating > 5) {
+                document.getElementById("ratingError").classList.remove("hidden");
+                return false;
+            } else {
+                document.getElementById("ratingError").classList.add("hidden");
+                return true;
+            }
+        }
+    </script>
+</body>   
+</html> 

@@ -1,0 +1,84 @@
+{% load review_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+ 
+<!-- component -->
+<section class="bg-white dark:bg-gray-900">
+    <div class="container px-6 py-10 mx-auto ">
+        <h1 class="text-4xl font-semibold text-gray-800 capitalize lg:text-6xl dark:text-white text-center">Breweries</h1>
+    
+        <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-3">
+            {% for brewery in breweries %}
+            <div class="lg:flex">
+                <div class="flex-shrink-0 m-6 relative overflow-hidden bg-yellow-350 rounded-lg max-w-xs shadow-lg">
+                <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
+                    <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"/>
+                    <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"/>
+                </svg>
+                <a href="{% url 'brewery_detail_view' brewery.id %}">
+                    <div class="relative pt-10 px-10 flex items-center justify-center">
+                        <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
+                        <img class=" w-100 " src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTklFvvvy5vn_vijuWnrRyLqS4ieCgJjjwhww&s" alt="">
+                    </div>
+                    <div class="relative text-black px-10 pb-10 mt-6 ">
+                        {% comment %} <span class="block opacity-75 -mb-1">Indoor</span> {% endcomment %}
+                        <div class="flex justify-between">
+                        <span class="block font-bold text-1.5xl text-left text-white">{{ brewery.name }}</span>
+                    </div>
+                    <br>
+                    <div class="flex mr-3">
+                        <p class="card-text"> <span class="text-gray-400">
+                            Brewery Address: </span>
+                            <span class="text-yellow-600"> {{ brewery.address_1 }} </span></p>
+                    </div>
+                    <div class="flex mr-3">
+                        <p class="card-text"> <span class="text-gray-400">
+                            Phone Number: </span>
+                            <span class="text-yellow-600"> {{ brewery.phone }} </span></p>
+                    </div>
+                    
+                    <div class="flex mr-3">
+                        <p class="card-text"> <span class="text-gray-400">
+                            Website URL: </span>
+                            <a class="text-blue-400" href="{{ brewery.website_url }}"><span> {{ brewery.website_url }} </span></a></p>
+                    </div>
+
+                    <div class="flex mr-3">
+                        <p class="card-text"> <span class="text-gray-400">
+                            State: </span>
+                            <span class="text-yellow-600"> {{ brewery.state }} </span></p>
+                    </div>
+
+                    <div class="flex mr-3">
+                        <p class="card-text"> <span class="text-gray-400">
+                            City: </span>
+                            <span class="text-yellow-600"> {{ brewery.city }} </span></p>
+                    </div>
+                    <div class="flex">
+                        <div class="flex text-gray-400 mr-3">
+                            {% if brewery.average_rating %}
+                            Average Rating: <span class="mr-3"></span>
+                        {% for _ in brewery.average_rating|star_range %}
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="h-5 w-5 text-yellow-500 fill-current">
+                            <path d="M10 1l2.5 6.5H19l-5 4.1 1.9 5.9L10 15.4 4.6 17.5l1.9-5.9-5-4.1h6.5L10 1z"/>
+                        </svg>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                </a>
+           </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</body>
+</html>
